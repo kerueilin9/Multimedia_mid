@@ -93,6 +93,18 @@ from sklearn.metrics import confusion_matrix
 # print('confusion_matrix (QDA):\n{}'.format(cm))
 # print('confusion_matrix (QDA,acc):{}'.format(acc))
 
+
+
+
+def loss(x, y):
+    return np.dot(np.dot(np.linalg.pinv(np.dot(np.transpose(x), x)), np.transpose(x)), y)
+
+newtrain = np.insert(x_train, 0, 1, axis = 1).astype('float64')
+newtest = np.insert(x_test, 0, 1, axis = 1).astype('float64')
+
+print(np.dot(newtest, loss(newtrain, y_train)))
+
+
 #from sklearn.linear_model import LogisticRegression
 import numpy as np
 from sklearn.linear_model import LogisticRegression, LinearRegression
